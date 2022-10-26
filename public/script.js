@@ -23,29 +23,36 @@ fetch("https://jsonplaceholder.typicode.com/users")
 
 // function to load posts after user clicks the button
 function loadPosts() {
+
+    deletePosts();
+
     const postEl = document.getElementById("posts")
 
     let Id = event.target.dataset.userId
-    
+
     fetch(`https://jsonplaceholder.typicode.com/posts?${Id}`)
-    .then((data) => data.json())
-    .then((data) => {
-        for (let {body,title} of data) {
-            const postBody = document.createElement("p")
-            const postTitle = document.createElement("p")
-            postBody.innerText = body
-            postEl.append(postBody)
-            postTitle.innerText = title
-            postEl.append(postTitle)
-        }
-    })
-    .then((data) => console.log(data));
+        .then((data) => data.json())
+        .then((data) => {
+            for (let { body, title } of data) {
+                const postTitle = document.createElement("Strong")
+                const postBody = document.createElement("p")
+                postBody.innerText = body
+                postEl.append(postBody)
+                postTitle.innerText = title
+                postEl.append(postTitle)
+            }
+        })
 
 }
 
 //function to clear displayed posts after user selects a different account.
 function deletePosts() {
-    
+    let users = document.querySelectorAll("p, Strong");
+    for (let i = 0; i < users.length; i++) {
+        if (users[i]) {
+            users[i].style.display = 'none';
+        }
+    }
 
 }
 
