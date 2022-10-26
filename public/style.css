@@ -1,0 +1,29 @@
+table {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-collapse: collapse;
+    
+    
+}
+th {
+    padding: 0.5rem;
+    background-color: rgb(108, 156, 109);
+    font-size: 1.5rem;
+}
+td{
+    padding: 0.5rem;
+    background-color: rgb(176, 205, 195);
+    font-size: 1.5rem;
+   
+}
+
+button {
+    border-radius: 5px;
+    font-size: large;
+    background-color: #d6e015;
+}
+button:hover{
+    background-color:#ea520c;
+    transition: 0.7s;
+}
