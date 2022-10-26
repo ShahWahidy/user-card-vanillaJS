@@ -4,29 +4,31 @@ fetch("https://jsonplaceholder.typicode.com/users")
     .then((response) => response.json())
     .then((json) => {
 
-        // 2. Create a variable to store HTML table headers
+        //Creating a variable to store HTML table headers
         let li = `<tr><th>ID</th><th>Name</th><th>User Name</th><th>Posts</th></tr>`;
 
-        // 3. Loop through each data and add a table row
+        // Looping through each data and add a table row
         json.forEach((user) => {
             li += `<tr>
-        <td>${user.id}</td>
-        <td>${user.name} </td>
-        <td>${user.username}</td>
-        <td><button onclick="loadPosts()">Get Posts</button></td>
-      </tr>`;
+            <td>${user.id}</td>
+            <td>${user.name} </td>
+            <td>${user.username}</td>
+            <td><button onclick="loadPosts()">Get Posts</button></td>
+            </tr>`;
         });
 
-        // 4. DOM Display result
+        //Getting the table from html file and displaying the result
         document.getElementById("users").innerHTML = li;
     });
 
+// function to load posts after user clicks the button
 function loadPosts() {
     const postEl = document.getElementById("posts")
-    let userId = event.target.userId
-    fetch(`https://jsonplaceholder.typicode.com/posts?${userId}`)
+
+    let Id = event.target.dataset.userId
+    
+    fetch(`https://jsonplaceholder.typicode.com/posts?${Id}`)
     .then((data) => data.json())
-    .then((data) => console.log(userId))
     .then((data) => {
         for (let {body,title} of data) {
             const postBody = document.createElement("p")
@@ -36,10 +38,12 @@ function loadPosts() {
             postTitle.innerText = title
             postEl.append(postTitle)
         }
-    });
+    })
+    .then((data) => console.log(data));
 
 }
 
+//function to clear displayed posts after user selects a different account.
 function deletePosts() {
     
 
